@@ -8,3 +8,8 @@
   padding-top: 12px;
   padding-bottom: 12px;
 }
+
+.item {
+  list-style: none;
+  font-size: 20px;
+}

@@ -3,7 +3,8 @@ import * as Yup from "yup";
 import css from "./ContactForm.module.css";
 import { useId } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
+import toast from "react-hot-toast";
 
 const INITIAL_VALUES = {
   name: "",
@@ -30,7 +31,11 @@ const ContactForm = () => {
   const dispatch = useDispatch();
 
   const onAddContact = (newContact) => {
-    dispatch(addContact(newContact));
+    dispatch(addContact(newContact))
+      .unwrap()
+      .then(() => {
+        toast.success("Contact added successfully");
+      });
   };
 
   const nameFieldId = useId();

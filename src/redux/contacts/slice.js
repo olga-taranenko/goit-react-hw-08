@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addContact, deleteContact, fetchContacts } from "./contactsOps";
+import { addContact, apiGetAllContacts, deleteContact } from "./operations";
 
 const INITIAL_STATE = {
   contacts: [],
@@ -13,15 +13,15 @@ const contactsSlice = createSlice({
 
   extraReducers: (builder) =>
     builder
-      .addCase(fetchContacts.pending, (state) => {
+      .addCase(apiGetAllContacts.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchContacts.fulfilled, (state, action) => {
+      .addCase(apiGetAllContacts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.contacts = action.payload;
       })
-      .addCase(fetchContacts.rejected, (state, action) => {
+      .addCase(apiGetAllContacts.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
